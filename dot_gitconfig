@@ -1,0 +1,39 @@
+[alias]
+aa = add .
+ba = branch -a
+c = checkout
+cb = checkout -b
+s = switch
+sm = switch -
+sc = switch -c
+update = "!f() { git fetch $1; git rebase $1/$2; }; f"
+cm = commit -m
+cam = commit --amend -a -C HEAD
+fixit = commit --amend --no-edit
+st = status
+f = fetch
+r = rebase
+lo = log --oneline
+po = push origin HEAD
+pf = push --force-with-lease origin HEAD
+
+[user]
+	name = sora igarashi
+	email = 65098540+noir-h@users.noreply.github.com
+[url "ssh://git@github.com/"]
+    InsteadOf = https://github.com/
+    InsteadOf = git@github.com:
+[diff]
+	tool = p4merge
+[difftool "p4merge"]
+	path = /Applications/p4merge.app/Contents/MacOS/p4merge
+[difftool]
+	prompt = false
+[merge]
+	tool = p4merge
+[mergetool "p4merge"]
+	path = /Applications/p4merge.app/Contents/MacOS/p4merge
+[mergetool]
+	prompt = false
+[url "git@github.com:"]
+	insteadOf = https://github.com

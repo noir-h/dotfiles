@@ -1,0 +1,35 @@
+[directory]
+truncation_length = 100
+truncate_to_repo = false
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "user: [$user]($style) "
+disabled = false
+
+[aws]
+disabled = true
+
+[git_branch]
+symbol = " "
+
+[gcloud]
+disabled = true
+
+[hostname]
+disabled = true
+
+[package]
+disabled = true
+
+# 空行追加
+add_newline = true
+
+# タイムアウト時間
+scan_timeout = 10
+
+# 記号の設定
+[character]
+success_symbol = "[▶](green)" # コマンド成功時
+error_symbol = "[▶](red)"    # コマンド失敗時

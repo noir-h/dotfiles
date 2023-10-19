@@ -15,31 +15,12 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-
 # >>> go settings >>>
 # export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin/
 export PATH=$PATH:$GOPATH:$GOBIN
 # <<< go settings <<<
-
-# >>> exa settings >>>
-if [[ $(command -v exa) ]]; then
-  alias e='exa --icons --git'
-  alias l=e
-  alias ls=e
-  alias ea='exa -a --icons --git'
-  alias la=ea
-  alias ee='exa -aahl --icons --git'
-  alias ll=ee
-  alias et='exa -T -L 3 -a -I "node_modules|.git|.cache" --icons'
-  alias lt=et
-  alias eta='exa -T -a -I "node_modules|.git|.cache" --color=always --icons | less -r'
-  alias lta=eta
-  alias l='clear && ls'
-fi
-# <<< exa settings <<<
 
 # >>> ghq peco settings >>>
 function peco-src () {
@@ -93,12 +74,79 @@ zle -N peco-cdr
 bindkey '^E' peco-cdr
 # <<< peco cdr settings <<<
 
+# >>> peco   settings >>>
+function gke-activate() {
+  name="$1"
+  zone_or_region="$2"
+  if echo "${zone_or_region}" | grep '[^-]*-[^-]*-[^-]*' > /dev/null; then
+    echo "gcloud container clusters get-credentials \"${name}\" --zone=\"${zone_or_region}\""
+    gcloud container clusters get-credentials "${name}" --zone="${zone_or_region}"
+  else
+    echo "gcloud container clusters get-credentials \"${name}\" --region=\"${zone_or_region}\""
+    gcloud container clusters get-credentials "${name}" --region="${zone_or_region}"
+  fi
+}
+function kx-complete() {
+  _values $(gcloud container clusters list | awk '{print $1}')
+}
+function kx() {
+  name="$1"
+  if [ -z "$name" ]; then
+    line=$(gcloud container clusters list | peco)
+    name=$(echo $line | awk '{print $1}')
+  else
+    line=$(gcloud container clusters list | grep "$name")
+  fi
+  zone_or_region=$(echo $line | awk '{print $2}')
+  gke-activate "${name}" "${zone_or_region}"
+}
+compdef kx-complete kx
+
+function gcloud-activate() {
+  name="$1"
+  project="$2"
+  echo "gcloud config configurations activate \"${name}\""
+  gcloud config configurations activate "${name}"
+}
+function gx-complete() {
+  _values $(gcloud config configurations list | awk '{print $1}')
+}
+function gx() {
+  name="$1"
+  if [ -z "$name" ]; then
+    line=$(gcloud config configurations list | peco)
+    name=$(echo "${line}" | awk '{print $1}')
+  else
+    line=$(gcloud config configurations list | grep "$name")
+  fi
+  project=$(echo "${line}" | awk '{print $4}')
+  gcloud-activate "${name}" "${project}"
+}
+compdef gx-complete gx
+# <<< peco cdr settings <<<
+
 # ブランチを簡単切り替え。git checkout lbで実行できる
 alias -g lb='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
-
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Dockerコマンド
 alias d='docker'
 alias dc='docker-compose'
+alias k=kubectl
+
+[[ -s "/Users/igarashisora/.gvm/scripts/gvm" ]] && source "/Users/igarashisora/.gvm/scripts/gvm"
+
+
+# zsh-completions, zsh-autosuggestions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source <(kubectl completion zsh)
+
+  autoload -Uz compinit
+  compinit
+fi
+
+eval "$(pyenv init -)"
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+#eval "$(nodenv init -)"

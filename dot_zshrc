@@ -99,4 +99,6 @@ alias -g lb='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-
+# Dockerコマンド
+alias d='docker'
+alias dc='docker-compose'

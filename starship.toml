@@ -49,6 +49,5 @@ style = "#ffc0cb"
 # 記号の設定
 [character]
 #style = "#ff69b4"
-success_symbol = "➜"
-error_symbol = "✗"
-
+success_symbol = "[➜](green)"
+error_symbol = "[✗](red)"

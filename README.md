@@ -22,3 +22,12 @@ Apply my settings.
 ```
 chezmoi apply
 ```
+
+.dotfileを修正するとき
+```
+chezmoi edit .dotfile
+```
+上記は本リポジトリのdot_fileを修正する、localの環境にも反映させる場合はapplyを実行する
+```
+chezmoi apply
+```

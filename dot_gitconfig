@@ -13,7 +13,7 @@ fixit = commit --amend --no-edit
 st = status
 f = fetch
 r = rebase
-lo = log --oneline
+lo = log -n 1
 po = push origin HEAD
 pf = push --force-with-lease origin HEAD
 

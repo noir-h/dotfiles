@@ -24,6 +24,7 @@ chezmoi apply
 ```
 
 .dotfileを修正するとき
+例: chezmoi edit .gitconfig
 ```
 chezmoi edit .dotfile
 ```

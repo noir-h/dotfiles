@@ -1,25 +1,12 @@
+# eval
 eval "$(starship init zsh)"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/igarashisora/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/igarashisora/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/igarashisora/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/igarashisora/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+eval "$(mise activate zsh)"
 
 # >>> go settings >>>
 # export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin/
-export PATH=$PATH:$GOPATH:$GOBIN
+#export GOPATH=$HOME/go
+#export GOBIN=$GOPATH/bin/
+#export PATH=$PATH:$GOPATH:$GOBIN
 # <<< go settings <<<
 
 # >>> ghq peco settings >>>
@@ -46,6 +33,32 @@ zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 # <<< peco history settings <<<
 
+# search a destination from cdr list
+function peco-get-destination-from-cdr() {
+  cdr -l | \
+  sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
+  peco --query "$LBUFFER"
+}
+
+### 過去に移動したことのあるディレクトリを選択。ctrl-uにバインド
+# cdrを有効にする
+# autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+# add-zsh-hook chpwd chpwd_recent_dirs
+function peco-cdr() {
+  local destination="$(peco-get-destination-from-cdr)"
+  if [ -n "$destination" ]; then
+    BUFFER="cd $destination"
+    zle accept-line
+  else
+    zle reset-prompt
+  fi
+}
+zle -N peco-cdr
+bindkey '^u' peco-cdr
+
+# dockerコンテナに入る。deで実行できる
+alias de='docker exec -it $(docker ps | peco | cut -d " " -f 1) /bin/bash'
+
 # history
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
@@ -54,25 +67,6 @@ SAVEHIST=1000000
 # share .zshhistory
 setopt inc_append_history
 setopt share_history
-
-# search a destination from cdr list
-function peco-get-destination-from-cdr() {
-  cdr -l | \
-  sed -e 's/^[[:digit:]]*[[:blank:]]*//' | \
-  peco --query "$LBUFFER"
-}
-
-# >>> peco cdr  settings >>>
-function peco-cdr () {
-    local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
-        zle accept-line
-    fi
-}
-zle -N peco-cdr
-bindkey '^E' peco-cdr
-# <<< peco cdr settings <<<
 
 # >>> peco   settings >>>
 function gke-activate() {
@@ -100,7 +94,7 @@ function kx() {
   zone_or_region=$(echo $line | awk '{print $2}')
   gke-activate "${name}" "${zone_or_region}"
 }
-compdef kx-complete kx
+#compdef kx-complete kx
 
 function gcloud-activate() {
   name="$1"
@@ -122,7 +116,7 @@ function gx() {
   project=$(echo "${line}" | awk '{print $4}')
   gcloud-activate "${name}" "${project}"
 }
-compdef gx-complete gx
+#compdef gx-complete gx
 # <<< peco cdr settings <<<
 
 # ブランチを簡単切り替え。git checkout lbで実行できる
@@ -146,7 +140,4 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-eval "$(pyenv init -)"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-#eval "$(nodenv init -)"

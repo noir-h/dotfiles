@@ -18,8 +18,8 @@ po = push origin HEAD
 pf = push --force-with-lease origin HEAD
 
 [user]
-	name = sora igarashi
-	email = 65098540+noir-h@users.noreply.github.com
+    name = sora igarashi
+    email = 65098540+noir-h@users.noreply.github.com
 [url "ssh://git@github.com/"]
     InsteadOf = https://github.com/
     InsteadOf = git@github.com:

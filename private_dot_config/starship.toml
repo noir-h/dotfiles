@@ -1,0 +1,49 @@
+# 空行追加
+add_newline = true
+# タイムアウト時間
+scan_timeout = 10
+
+[directory]
+style = "#ba55d3"
+truncation_length = 0
+truncate_to_repo = false
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "user: [$user]($style) "
+disabled = false
+
+[aws]
+disabled = true
+
+[git_branch]
+style = "#dda0dd"
+symbol = " "
+truncation_symbol = ""
+
+[git_status]
+disabled = true
+
+[git_commit]
+disabled = false
+commit_hash_length = 4
+
+[gcloud]
+disabled = true
+
+[hostname]
+disabled = true
+
+[package]
+disabled = true
+
+[nodejs]
+style = "#ffc0cb"
+
+# 記号の設定
+[character]
+#style = "#ff69b4"
+success_symbol = "[➜](green)"
+error_symbol = "[✗](red)"
+

@@ -2,10 +2,13 @@
 -- vim.cmd('language en_US.utf8') -- 表示言語を英語にする（Linux）
 vim.cmd('language en_US') -- 表示言語を英語にする（Mac）
 
+vim.opt.modifiable = true  -- 'modifiable' を有効にする
+
+
 -- ファイル
 vim.opt.fileencoding = "utf-8" -- エンコーディングをUTF-8に設定
 vim.opt.swapfile = false -- スワップファイルを作成しない
--- vim.opt.helplang = "ja" -- ヘルプファイルの言語は日本語
+vim.opt.helplang = "ja" -- ヘルプファイルの言語は日本語
 vim.opt.hidden = true -- バッファを切り替えるときに
                       --ファイルを保存しなくてもOKに
 

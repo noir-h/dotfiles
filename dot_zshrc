@@ -2,13 +2,6 @@
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
 
-# >>> go settings >>>
-# export GOROOT=/usr/local/go
-#export GOPATH=$HOME/go
-#export GOBIN=$GOPATH/bin/
-#export PATH=$PATH:$GOPATH:$GOBIN
-# <<< go settings <<<
-
 # >>> ghq peco settings >>>
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
@@ -22,17 +15,6 @@ zle -N peco-src
 bindkey '^g' peco-src
 # <<< ghq peco settings <<<
 
-# >>> peco history settings >>>
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
-# <<< peco history settings <<<
-
 # search a destination from cdr list
 function peco-get-destination-from-cdr() {
   cdr -l | \
@@ -42,8 +24,11 @@ function peco-get-destination-from-cdr() {
 
 ### 過去に移動したことのあるディレクトリを選択。ctrl-uにバインド
 # cdrを有効にする
-# autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-# add-zsh-hook chpwd chpwd_recent_dirs
+autoload -Uz chdir_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chdir_recent_dirs
+#zstyle ':chdir:*' recent-dirs-max 1000
+#zstyle ':chdir:*' recent-dirs-default true
+
 function peco-cdr() {
   local destination="$(peco-get-destination-from-cdr)"
   if [ -n "$destination" ]; then
@@ -56,8 +41,6 @@ function peco-cdr() {
 zle -N peco-cdr
 bindkey '^u' peco-cdr
 
-# dockerコンテナに入る。deで実行できる
-alias de='docker exec -it $(docker ps | peco | cut -d " " -f 1) /bin/bash'
 
 # history
 HISTFILE=$HOME/.zsh-history
@@ -119,25 +102,32 @@ function gx() {
 #compdef gx-complete gx
 # <<< peco cdr settings <<<
 
-# ブランチを簡単切り替え。git checkout lbで実行できる
-alias -g lb='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+# ブランチ切替
+alias -g lb='`git branch | fzf --prompt "GIT BRANCH> " --no-multi | sed -e "s/^\*\s*//g"`'
 
-# Dockerコマンド
 alias d='docker'
 alias dc='docker-compose'
+alias de='docker exec -it $(docker ps | peco | cut -d " " -f 1) /bin/bash'
+
 alias k=kubectl
 
 [[ -s "/Users/igarashisora/.gvm/scripts/gvm" ]] && source "/Users/igarashisora/.gvm/scripts/gvm"
 
-
 # zsh-completions, zsh-autosuggestions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source <(kubectl completion zsh)
+source <(kubectl completion zsh)
 
-  autoload -Uz compinit
-  compinit
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# compinit を実行して補完システムを初期化
+autoload -Uz compinit && compinit
 
+# fzf history
+function fzf-select-history() {
+    BUFFER=$(history -n -r 1 | sort -u | fzf --query "$LBUFFER" --reverse)
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
+
+eval "$(sheldon source)"

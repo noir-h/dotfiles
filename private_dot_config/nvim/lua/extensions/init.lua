@@ -1,9 +1,7 @@
 local plugins = {
 	{
 		"akinsho/toggleterm.nvim",
-		keys = {
-			[[<c-\>]],
-		},
+		event = { "VimEnter" },
 		version = "*",
 		config = function()
 			require("extensions.toggleterm")
@@ -52,7 +50,7 @@ local plugins = {
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"rmehri01/onenord.nvim",
-			"lewis6991/gitsigns.nvim",
+			-- "lewis6991/gitsigns.nvim",
 			"SmiteshP/nvim-navic",
 		},
 	},
@@ -71,13 +69,13 @@ local plugins = {
 			vim.g.rustfmt_autosave = 1
 		end,
 	},
-	{
-		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre" },
-		config = function()
-			require("extensions.gitsigns")
-		end,
-	},
+	-- {
+	-- 	"lewis6991/gitsigns.nvim",
+	-- 	event = { "BufReadPre" },
+	-- 	config = function()
+	-- 		require("extensions.gitsigns")
+	-- 	end,
+	-- },
 	-- LSP progress messages.
 	{
 		"j-hui/fidget.nvim",
@@ -186,14 +184,34 @@ local plugins = {
 	-- },
 	{
 		"numToStr/Comment.nvim",
-		keys = {
-			"<leader>nb",
-		},
+		-- keys = {
+		-- 	"<leader>nb",
+		-- },
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("extensions.comment")
 		end,
-		dependencies = {
-			"SmiteshP/nvim-navbuddy",
+		-- 謎の設定が書かれていたが、使用用途が不明なのでコメントアウト
+		-- dependencies = {
+		-- 	"SmiteshP/nvim-navbuddy",
+		-- },
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			defaults = {
+				["<leader>test"] = { name = "+debug" },
+			},
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
 		},
 	},
 	{
@@ -222,20 +240,6 @@ local plugins = {
 	--     'saadparwaiz1/cmp_luasnip',
 	--     'rafamadriz/friendly-snippets',
 	--   },
-	-- },
-	-- {
-	--   'zbirenbaum/copilot-cmp',
-	--   event = { 'InsertEnter' },
-	--   config = function() require('copilot_cmp').setup() end,
-	--   dependencies = {
-	--     'hrsh7th/nvim-cmp',
-	--     'zbirenbaum/copilot.lua',
-	--   },
-	-- },
-	-- {
-	--   'zbirenbaum/copilot.lua',
-	--   event = { 'InsertEnter' },
-	--   config = function() require 'extensions.copilot' end,
 	-- },
 	-- {
 	--   'folke/trouble.nvim',

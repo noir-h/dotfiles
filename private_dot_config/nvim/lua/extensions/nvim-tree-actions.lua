@@ -100,7 +100,7 @@ local M = {}
 
 function M.on_attach(bufnr)
   local opts = function(desc)
-    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, nowait = true }
+    return { desc = 'nvim-tree' .. desc, buffer = bufnr, nowait = true }
   end
 
   for _, cmd in pairs(command) do

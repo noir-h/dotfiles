@@ -131,9 +131,8 @@ local plugins = {
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
-		keys = {
-			"<leader>ee",
-		},
+		-- dashbordを表示した時にnvim-treeを使用したいので、VimEnterで読み込む
+		event = { "VimEnter" },
 		config = function()
 			require("extensions.nvim-tree")
 		end,
@@ -199,11 +198,7 @@ local plugins = {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {
-			defaults = {
-				["<leader>test"] = { name = "+debug" },
-			},
-		},
+		opts = {},
 		keys = {
 			{
 				"<leader>?",

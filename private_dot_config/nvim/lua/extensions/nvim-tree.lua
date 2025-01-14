@@ -1,3 +1,4 @@
+-- https://github.com/nvim-tree/nvim-tree.lua?tab=readme-ov-file
 require('nvim-tree').setup {
   sort_by = 'extension',
 
@@ -30,5 +31,13 @@ require('nvim-tree').setup {
   on_attach = require('extensions.nvim-tree-actions').on_attach,
 }
 
-vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
-vim.keymap.set('n', '<leader>ee', vim.cmd.NvimTreeToggle)
+vim.api.nvim_set_keymap(
+  "n", 
+  "<leader>e", 
+  "<cmd>NvimTreeToggle<CR>", 
+  {
+    noremap = true,
+    silent = true,
+    desc = "Toggle Nvim-Tree", 
+  }
+)

@@ -23,6 +23,12 @@ Apply my settings.
 chezmoi apply
 ```
 
+対象のディレクトリ・ファイルだけapplyする場合はpathを指定する
+
+```
+chezmoi apply .config/nvim
+```
+
 .dotfileを修正するとき
 例: chezmoi edit .gitconfig
 ```

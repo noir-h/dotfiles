@@ -38,3 +38,8 @@ chezmoi edit .dotfile
 ```
 chezmoi apply
 ```
+
+gnu stow に移行
+```
+stow -R -v -d ./ -t ~ zsh
+```

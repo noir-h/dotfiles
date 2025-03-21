@@ -9,7 +9,7 @@ end
 
 return {
     {
-        "snacks.nvim",
+        "folke/snacks.nvim",
         event = { "VimEnter" },
         opts = {
             dashboard = dashboard.opts,

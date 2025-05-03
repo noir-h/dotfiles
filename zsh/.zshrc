@@ -1,6 +1,6 @@
 # ~/.zshrc
-if [[ -f ~/.zsh/aliases.zsh ]]; then
-  source ~/.zsh/aliases.zsh
+if [[ -f ~/.zsh/alias.zsh ]]; then
+  source ~/.zsh/alias.zsh
 fi
 
 # eval

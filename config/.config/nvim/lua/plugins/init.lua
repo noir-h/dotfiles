@@ -8,6 +8,7 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.util" },
     { import = "plugins.treesitter" },
+    { import = "plugins.explorer" },
   },
   defaults = {
     lazy = false,

@@ -35,4 +35,39 @@ return {
             { "<leader>fc",  function() Snacks.dashboard.pick("files", { cwd = vim.fn.stdpath("config") }) end, { desc = "Find Config Files" } },
         },
     },
+    {
+        "epwalsh/obsidian.nvim",
+        version = "*",
+        lazy = true,
+        event = {
+            "BufReadPre " .. vim.fn.expand("~") .. "/obsidian/**/*.md",
+            "BufNewFile " .. vim.fn.expand("~") .. "/obsidian/**/*.md",
+        },
+        ft = "markdown",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+             -- {
+             --     "nvim-telescope/telescope.nvim",
+             --     config = function()
+             --         require("telescope").setup()
+             --     end,
+             -- },
+        },
+        opts = {
+            workspaces = {
+                {
+                    name = "obsidian",
+                    -- path = "~/obsidian",
+                    path = "/Users/igarashisora/obsidian", -- 絶対パス必須
+                },
+            },
+            daily_notes = {
+                folder = "daily",
+                date_format = "%Y-%m-%d",
+                alias_format = "%B %-d, %Y",
+                template = nil,
+            },
+        },
+    },
+
 }

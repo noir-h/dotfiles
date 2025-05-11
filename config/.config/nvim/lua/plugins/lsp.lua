@@ -16,36 +16,13 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-          "hrsh7th/cmp-nvim-lsp",
-          "hrsh7th/cmp-buffer",
-          "hrsh7th/cmp-path",
-          "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
         },
         config = function()
-          require("config.cmp")
-        end,
-      },
-
-
-    -- Mason-LSPconfig (Mason + LSP の連携)
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim" },
-        config = function()
-            require("mason-lspconfig").setup({
-                -- ensure_installed = { -- 🔥 ここで自動インストールする LSP を指定
-                --   "lua_ls",
-                --   "tsserver",
-                --   "pyright",
-                --   "rust_analyzer",
-                --   "gopls",
-                --   "html",
-                --   "cssls",
-                --   "bashls",
-                --   "jsonls",
-                -- },
-                automatic_installation = true, -- 必要な LSP を自動インストール
-            })
+            require("config.cmp")
         end,
     },
 

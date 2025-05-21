@@ -46,19 +46,19 @@ return {
         ft = "markdown",
         dependencies = {
             "nvim-lua/plenary.nvim",
-             -- {
-             --     "nvim-telescope/telescope.nvim",
-             --     config = function()
-             --         require("telescope").setup()
-             --     end,
-             -- },
+            {
+                "nvim-telescope/telescope.nvim",
+                config = function()
+                    require("telescope").setup()
+                end,
+            },
         },
         opts = {
             workspaces = {
                 {
                     name = "obsidian",
                     -- path = "~/obsidian",
-                    path = "/Users/igarashisora/obsidian", -- 絶対パス必須
+                    path = "/Users/igarashisora/ghq/github.com/noir-h/obsidian/", -- 絶対パス必須
                 },
             },
             daily_notes = {
@@ -67,6 +67,20 @@ return {
                 alias_format = "%B %-d, %Y",
                 template = nil,
             },
+            -- Toggle check-boxes.
+            ["<leader>ch"] = {
+                action = function()
+                    return require("obsidian").util.toggle_checkbox()
+                end,
+                opts = { buffer = true },
+            },
+            -- Smart action depending on context, either follow link or toggle checkbox.
+            ["<cr>"] = {
+                action = function()
+                    return require("obsidian").util.smart_action()
+                end,
+                opts = { buffer = true, expr = true },
+            }
         },
     },
 

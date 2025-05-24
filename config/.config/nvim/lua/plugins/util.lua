@@ -33,6 +33,8 @@ return {
             { "<leader>dps", function() Snacks.profiler.scratch() end,                                          desc = "Profiler Scratch Buffer" },
             { "<leader>ff",  function() Snacks.dashboard.pick("files") end,                                     { desc = "Find Config Files" } },
             { "<leader>fc",  function() Snacks.dashboard.pick("files", { cwd = vim.fn.stdpath("config") }) end, { desc = "Find Config Files" } },
+            { "<leader>gb",  function() Snacks.gitbrowse.open() end,  desc = "Open GitHub"  },
+            { "<leader>gl",  function() Snacks.lazygit.open() end,  desc = "Open Lazygit"  },
         },
     },
     {

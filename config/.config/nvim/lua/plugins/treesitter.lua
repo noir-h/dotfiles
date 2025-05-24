@@ -17,9 +17,9 @@ return {
       { "<bs>", desc = "Decrement Selection", mode = "x" },
     },
     opts_extend = { "ensure_installed" },
-    opts = treesitter_config.opts, -- 🔥 設定を config/treesitter.lua から読み込む
+    opts = treesitter_config.opts, --  設定を config/treesitter.lua から読み込む
     config = function(_, opts)
-      -- 🔥 `LazyVim.dedup()` の代わりに Neovim のテーブル関数を使う
+      --  `LazyVim.dedup()` の代わりに Neovim のテーブル関数を使う
       if type(opts.ensure_installed) == "table" then
         local seen = {}
         local unique_list = {}

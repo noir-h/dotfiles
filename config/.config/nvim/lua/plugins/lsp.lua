@@ -1,15 +1,25 @@
 return {
-    -- Mason (LSP, DAP, Linter, Formatter の管理)
     {
-        "williamboman/mason.nvim",
-        lazy = false, -- Neovim 起動時にロード
+        "mason-org/mason.nvim",
+        build = ":MasonUpdate",
+        cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
         config = function()
             require("config.mason")
         end,
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
         dependencies = {
-            "williamboman/mason-lspconfig.nvim",
-            "neovim/nvim-lspconfig",
-            "hrsh7th/cmp-nvim-lsp",
+            { "mason-org/mason.nvim" },
+            { "neovim/nvim-lspconfig" },
+        },
+        event = { "BufReadPre", "BufNewFile" },
+        config = true,
+        keys = {
+            { "<C-space>", "<cmd>lua vim.lsp.completion.get()  <CR>", mode = "i" },
+            { "gh",        "<cmd>lua vim.lsp.buf.hover()       <CR>" },
+            { "gd",        "<cmd>lua vim.lsp.buf.definition()  <CR>" },
+            { "gD",        "<cmd>lua vim.lsp.buf.declaration() <CR>" },
         },
     },
     {
@@ -31,8 +41,8 @@ return {
         "neovim/nvim-lspconfig",
         event = { "BufNewFile", "BufReadPre" },
         dependencies = {
-            "williamboman/mason.nvim",
-            { "williamboman/mason-lspconfig.nvim", config = function() end },
+            "mason-org/mason.nvim",
+            { "mason-org/mason-lspconfig.nvim", config = function() end },
         },
         opts = function()
             return require("config.lsp").opts -- `config/lsp.lua` の設定を適用

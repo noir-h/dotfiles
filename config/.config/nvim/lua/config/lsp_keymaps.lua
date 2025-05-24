@@ -10,6 +10,8 @@ M.setup = function()
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
             local opts = { buffer = ev.buf }
+            vim.keymap.set("i", "<C-n>", vim.lsp.completion.get, { desc = "completion get", buffer = ev.buf })
+            vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition", buffer = ev.buf })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = ev.buf })
             vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation", buffer = ev.buf })

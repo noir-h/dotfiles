@@ -19,19 +19,26 @@ return {
             },
         },
         event = { "BufReadPre", "BufNewFile" },
-        -- config = true,
     },
     {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        'hrsh7th/nvim-cmp',
         dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
+            'hrsh7th/cmp-cmdline',
         },
         config = function()
-            require("config.cmp")
-        end,
+            local cmp = require('cmp')
+            cmp.setup.cmdline(':', {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = 'path' },
+                    {
+                        name = 'cmdline',
+                        option = {
+                            ignore_cmds = { 'Man', '!' }
+                        }
+                    },
+                },
+            })
+        end
     },
 }

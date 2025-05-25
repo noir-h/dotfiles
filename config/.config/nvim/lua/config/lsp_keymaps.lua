@@ -20,12 +20,7 @@ M.setup = function()
             local bufnr = args.buf
             local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
             local opts = { buffer = bufnr }
-
-            vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to Prev Diagnostic" })
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to Next Diagnostic" })
-            vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set Diagnostic List" })
-
+            vim.keymap.set("i", "<C-n>", vim.lsp.completion.get, { desc = "completion get", buffer = bufnr })
             vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition", buffer = bufnr })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = bufnr })

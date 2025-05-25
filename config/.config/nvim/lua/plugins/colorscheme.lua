@@ -10,18 +10,18 @@ return {
     },
     -- {
     --     "folke/tokyonight.nvim",
-    --     opts = { style = "moon" },
+    --     event = "VeryLazy",
+    --     opts = { style = "night" },
     --     config = function()
-    --         vim.cmd.colorscheme("tokyonight-moon")
+    --         vim.cmd.colorscheme("tokyonight-night")
     --     end,
     -- },
-    	{
-		"rmehri01/onenord.nvim",
-		event = { "VimEnter" },
-		priority = 1000,
-		config = function()
-			require("config.onenord")
-		end,
-	},
+    {
+        "rmehri01/onenord.nvim",
+        event = "VimEnter",
+        priority = 1000,
+        config = function()
+            require("config.onenord")
+        end,
+    },
 }
-

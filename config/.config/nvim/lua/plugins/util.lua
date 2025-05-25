@@ -69,9 +69,12 @@ return {
         opts = {
             workspaces = {
                 {
-                    name = "obsidian",
-                    -- path = "~/obsidian",
-                    path = "/Users/igarashisora/ghq/github.com/noir-h/obsidian/", -- 絶対パス必須
+                    name = "develop",
+                    path = "~/ghq/github.com/noir-h/obsidian/develop", -- 絶対パス必須
+                },
+                {
+                    name = "freee",
+                    path = "~/ghq/github.com/noir-h/obsidian/freee", -- 絶対パス必須
                 },
             },
             daily_notes = {

@@ -21,20 +21,56 @@ return {
         event = { "BufReadPre", "BufNewFile" },
     },
     {
-        'hrsh7th/nvim-cmp',
+        "stevearc/conform.nvim",
+        config = function()
+            local web_formatter = { "prettier", stop_after_first = true }
+            require("conform").setup({
+                formatters_by_ft = {
+                    typescript = web_formatter,
+                    javascript = web_formatter,
+                    typescriptreact = web_formatter,
+                    javascriptreact = web_formatter,
+                    vue = web_formatter,
+                    svelte = web_formatter,
+                    json = web_formatter,
+                    jsonc = web_formatter,
+                    yaml = web_formatter,
+                    html = web_formatter,
+                    css = web_formatter,
+                    scss = web_formatter,
+                    less = web_formatter,
+                },
+                format_on_save = {
+                    timeout_ms = 500,
+                    lsp_format = "fallback",
+                },
+                -- Prettier の設定をカスタマイズする場合
+                formatters = {
+                    prettier = {
+                        -- ルートディレクトリの .prettierrc.js などの設定ファイルを優先して使用
+                        prepend_args = { "--config-precedence", "prefer-file" },
+                        -- または特定の設定を直接指定することもできます
+                        -- args = { "--single-quote", "--trailing-comma", "es5" },
+                    }
+                },
+            })
+        end,
+    },
+    {
+        "hrsh7th/nvim-cmp",
         dependencies = {
-            'hrsh7th/cmp-cmdline',
+            "hrsh7th/cmp-cmdline",
         },
         config = function()
-            local cmp = require('cmp')
-            cmp.setup.cmdline(':', {
+            local cmp = require("cmp")
+            cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({
-                    { name = 'path' },
+                    { name = "path" },
                     {
-                        name = 'cmdline',
+                        name = "cmdline",
                         option = {
-                            ignore_cmds = { 'Man', '!' },
+                            ignore_cmds = { "Man", "!" },
                         },
                     },
                 }),

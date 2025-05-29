@@ -42,7 +42,8 @@ M.setup = function()
             end
 
             if not client:supports_method('textDocument/willSaveWaitUntil')
-                and client:supports_method('textDocument/formatting') then
+                and client:supports_method('textDocument/formatting')
+                and client.name ~= "ts_ls" then -- tsserver の場合はスキップ
                 vim.api.nvim_create_autocmd('BufWritePre', {
                     group = vim.api.nvim_create_augroup('my.lsp.format', { clear = false }),
                     buffer = bufnr,

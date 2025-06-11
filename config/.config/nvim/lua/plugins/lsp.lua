@@ -64,7 +64,14 @@ return {
         config = function()
             local cmp = require("cmp")
             cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
+                -- mapping = cmp.mapping.preset.cmdline(),
+                mapping = {
+                    ['<C-n>'] = cmp.mapping.select_next_item(), -- 次の候補
+                    ['<C-p>'] = cmp.mapping.select_prev_item(), -- 前の候補
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    -- 他のマッピングも必要に応じて...
+                },
                 sources = cmp.config.sources({
                     { name = "path" },
                     {

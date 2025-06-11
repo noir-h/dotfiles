@@ -33,8 +33,8 @@ return {
             { "<leader>dps", function() Snacks.profiler.scratch() end,                                          desc = "Profiler Scratch Buffer" },
             { "<leader>ff",  function() Snacks.dashboard.pick("files") end,                                     { desc = "Find Config Files" } },
             { "<leader>fc",  function() Snacks.dashboard.pick("files", { cwd = vim.fn.stdpath("config") }) end, { desc = "Find Config Files" } },
-            { "<leader>gb",  function() Snacks.gitbrowse.open() end,  desc = "Open GitHub"  },
-            { "<leader>gl",  function() Snacks.lazygit.open() end,  desc = "Open Lazygit"  },
+            { "<leader>gb",  function() Snacks.gitbrowse.open() end,                                            desc = "Open GitHub" },
+            { "<leader>gl",  function() Snacks.lazygit.open() end,                                              desc = "Open Lazygit" },
         },
     },
     {
@@ -42,10 +42,12 @@ return {
         tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' },
         keys = {
-            { '<leader>ff', function() require('telescope.builtin').find_files() end, desc = 'Find files' },
-            { '<leader>fg', function() require('telescope.builtin').live_grep() end,  desc = 'Live grep' },
-            { '<leader>fb', function() require('telescope.builtin').buffers() end,    desc = 'Buffers' },
-            { '<leader>fh', function() require('telescope.builtin').help_tags() end,  desc = 'Help tags' },
+            { '<leader>ff', function() require('telescope.builtin').find_files() end,           desc = 'Find files' },
+            { '<leader>fg', function() require('telescope.builtin').live_grep() end,            desc = 'Live grep' },
+            { '<leader>fb', function() require('telescope.builtin').buffers() end,              desc = 'Buffers' },
+            { '<leader>fh', function() require('telescope.builtin').help_tags() end,            desc = 'Help tags' },
+            { '<leader>fs', function() require('telescope.builtin').lsp_document_symbols() end, desc = 'Document symbols' },
+            { '<leader>td', function() require('telescope.builtin').diagnostics() end,          desc = 'Telescope diagnostics' },
         },
     },
     {

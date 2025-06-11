@@ -10,9 +10,6 @@ local M = {}
 
 M.setup = function()
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to Prev Diagnostic" })
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to Next Diagnostic" })
-    vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, { desc = "Set Diagnostic List" })
 
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("my.lsp", {}),
@@ -20,19 +17,13 @@ M.setup = function()
             local bufnr = args.buf
             local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
             local opts = { buffer = bufnr }
-            vim.keymap.set("i", "<C-n>", vim.lsp.completion.get, { desc = "completion get", buffer = bufnr })
             vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition", buffer = bufnr })
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = bufnr })
-            -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation", buffer = bufnr })
             vim.keymap.set('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>',
                 { noremap = true, silent = true })
             vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References", buffer = bufnr })
             vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, { desc = "Go to Type Definition", buffer = bufnr })
-            -- vim.keymap.set('n', '<leader>fs', , { desc = 'Document Symbols' })
-            -- vim.keymap.set('n', '<leader>fs', builtin.lsp_document_symbols, { desc = 'Document Symbols' })
-            vim.keymap.set('n', '<leader>fs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>',
-                { desc = 'Document Symbols' })
 
             vim.keymap.set("n", "<space>la", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr })
             vim.keymap.set("n", "<space>lr", vim.lsp.buf.rename, { desc = "Rename Symbol", buffer = bufnr })

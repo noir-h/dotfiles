@@ -30,17 +30,7 @@ vim.keymap.set('x', 'P', 'p', { desc = 'Paste with change register' })
 vim.keymap.set('i', 'jj', '<ESC>')
 
 -- window
--- vim.keymap.set('n', '<leader>h', '<C-w><C-h>')
--- vim.keymap.set('n', '<leader>j', '<C-w><C-j>')
--- vim.keymap.set('n', '<leader>k', '<C-w><C-k>')
--- vim.keymap.set('n', '<leader>l', '<C-w><C-l>')
 vim.keymap.set('n', '<leader><Return><Return>', '<C-w><C-w>')
-
--- Smart Split
-vim.keymap.set('n', '<leader>sv', '<C-w>v', { desc = 'Split Vertically' })
-vim.keymap.set('n', '<leader>sh', '<C-w>s', { desc = 'Split Horizontally' })
-vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Make splits equal' })
-vim.keymap.set('n', '<leader>sx', '<cmd>close<CR>', { desc = 'Close current split' })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

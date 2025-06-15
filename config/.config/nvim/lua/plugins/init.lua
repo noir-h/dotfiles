@@ -9,6 +9,7 @@ require("lazy").setup({
         { import = "plugins.util" },
         { import = "plugins.treesitter" },
         { import = "plugins.explorer" },
+        { import = "plugins.ai" },
     },
     defaults = {
         lazy = false,

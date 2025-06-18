@@ -2,6 +2,7 @@ local M = {}
 
 M.opts = {
     preset = "helix",
+    delay = 300, -- ポップアップ表示までの遅延時間を短縮（デフォルト1000ms）
     spec = {
         {
             mode = { "n", "v" },

@@ -30,7 +30,7 @@ vim.keymap.set('x', 'P', 'p', { desc = 'Paste with change register' })
 vim.keymap.set('i', 'jj', '<ESC>')
 
 -- window
-vim.keymap.set('n', '<leader><Return><Return>', '<C-w><C-w>')
+vim.keymap.set('n', '<Return><Return>', '<C-w><C-w>')
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

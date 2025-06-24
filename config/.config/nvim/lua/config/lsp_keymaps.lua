@@ -9,8 +9,6 @@ vim.diagnostic.config({
 local M = {}
 
 M.setup = function()
-    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
-
     vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("my.lsp", {}),
         callback = function(args)

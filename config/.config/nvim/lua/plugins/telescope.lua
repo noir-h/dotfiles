@@ -18,6 +18,9 @@ return {
             { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>",  desc = "Document Symbols" },
             { "<leader>fw", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Workspace Symbols" },
 
+            -- 診断情報
+            { "<leader>e",  "<cmd>Telescope diagnostics<cr>",           desc = "Diagnostics" },
+
             -- 完全一致検索
             {
                 "<leader>fW",

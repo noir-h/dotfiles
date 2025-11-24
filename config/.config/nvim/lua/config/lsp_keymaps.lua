@@ -20,6 +20,8 @@ M.setup = function()
             vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration", buffer = bufnr })
             vim.keymap.set('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>',
                 { noremap = true, silent = true })
+            vim.keymap.set('n', 'gl', vim.diagnostic.open_float,
+                { noremap = true, silent = true, desc = "Show line diagnostics" })
             vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find References", buffer = bufnr })
             vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, { desc = "Go to Type Definition", buffer = bufnr })
 

@@ -19,10 +19,19 @@ use = ['{{ name }}.zsh']
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
 
-# sheldonではリポジトリのインストールまで
-# installを実行してbinaryを生成する
 [plugins.fzf]
 github = "junegunn/fzf"
+use = ["shell/key-bindings.zsh", "shell/completion.zsh"]
+
+# [plugins.fast-syntax-highlighting]
+# github = "zdharma-continuum/fast-syntax-highlighting"
+#
+# [plugins.fzf-tab]
+# github = "Aloxaf/fzf-tab"
+#
+# [plugins.you-should-use]
+# github = "MichaelAquilina/zsh-you-should-use"
+#
 
 # For example:
 #

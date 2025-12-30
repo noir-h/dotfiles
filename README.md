@@ -2,7 +2,11 @@
 dotfiles.
 
 ## gnu stow
+LINKを確認
 ```
-stow -R -v -d ./ -t ~ zsh
+stow -nv -t ~ nvim
 ```
-
+LINKを貼る
+```
+stow -v -t ~ nvim
+```

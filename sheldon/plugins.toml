@@ -19,10 +19,6 @@ use = ['{{ name }}.zsh']
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
 
-[plugins.fzf]
-github = "junegunn/fzf"
-use = ["shell/key-bindings.zsh", "shell/completion.zsh"]
-
 # [plugins.fast-syntax-highlighting]
 # github = "zdharma-continuum/fast-syntax-highlighting"
 #

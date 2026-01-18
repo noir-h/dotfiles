@@ -18,10 +18,57 @@
   pf = push --force-with-lease origin HEAD
 
 [user]
-  name = sora igarashi
-  email = 65098540+noir-h@users.noreply.github.com
+    name = sora igarashi
+    email = 65098540+noir-h@users.noreply.github.com
+
 [url "ssh://git@github.com/"]
-  InsteadOf = https://github.com/
-  InsteadOf = git@github.com:
+    InsteadOf = https://github.com/
+    InsteadOf = git@github.com:
+
 [url "git@github.com:"]
-  insteadOf = https://github.com
+    insteadOf = https://github.com
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    features = calochortus-lyallii
+    ; side-by-side = true
+
+[merge]
+    conflictStyle = zdiff3
+
+[delta "calochortus-lyallii"]
+    # author: https://github.com/manojkarthick
+    commit-decoration-style = none
+    dark = true
+    file-added-label = [+]
+    file-copied-label = [C]
+    file-decoration-style = none
+    file-modified-label = [M]
+    file-removed-label = [-]
+    file-renamed-label = [R]
+    file-style = 232 bold 184
+    hunk-header-decoration-style = none
+    hunk-header-file-style = "#999999"
+    hunk-header-line-number-style = bold "#03a4ff"
+    hunk-header-style = file line-number syntax
+    line-numbers = true
+    line-numbers-left-style = black
+    line-numbers-minus-style = "#B10036"
+    line-numbers-plus-style = "#03a4ff"
+    line-numbers-right-style = black
+    line-numbers-zero-style = "#999999"
+    minus-emph-style = syntax bold "#780000"
+    minus-style = syntax "#400000"
+    plus-emph-style = syntax bold "#007800"
+    plus-style = syntax "#004000"
+    whitespace-error-style = "#280050" reverse
+    zero-style = syntax
+    syntax-theme = Nord
+

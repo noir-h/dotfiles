@@ -10,3 +10,7 @@ LINKを貼る
 ```
 stow -v -t ~ nvim
 ```
+LINKを剥がす
+```
+stow -D -t ~ nvim
+```

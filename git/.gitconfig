@@ -75,7 +75,7 @@
     whitespace-error-style = "#280050" reverse
     zero-style = syntax
     syntax-theme = Nord
-
+; 仕事とプライベートで分けたい
 [gpg]
 	program = /opt/homebrew/bin/gpg
 	format = ssh

@@ -20,6 +20,7 @@
 [user]
     name = sora igarashi
     email = 65098540+noir-h@users.noreply.github.com
+    signingkey = ~/.ssh/git/id_ed25519.pub
 
 [url "ssh://git@github.com/"]
     InsteadOf = https://github.com/
@@ -27,6 +28,9 @@
 
 [url "git@github.com:"]
     insteadOf = https://github.com
+
+[commit]
+    gpgsign = true
 
 [core]
     pager = delta
@@ -72,3 +76,6 @@
     zero-style = syntax
     syntax-theme = Nord
 
+[gpg]
+	program = /opt/homebrew/bin/gpg
+	format = ssh

@@ -36,13 +36,13 @@ function y() {
 }
 
 # fzf history
-# function fzf-select-history() {
-#     BUFFER=$(history -n -r 1 | sort -u | fzf --query "$LBUFFER" --reverse)
-#     CURSOR=$#BUFFER
-#     zle reset-prompt
-# }
-# zle -N fzf-select-history
-# bindkey '^r' fzf-select-history
+function fzf-select-history() {
+    BUFFER=$(history -n -r 1 | sort -u | fzf --query "$LBUFFER" --reverse)
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
 
 function ghq_fzf_cd_widget() {
   local repo

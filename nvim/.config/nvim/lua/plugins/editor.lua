@@ -89,4 +89,18 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         -- config = function() require("Comment").setup() end,
     },
+    {
+        "karb94/neoscroll.nvim",
+        config = function()
+            require('neoscroll').setup({
+                mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
+                    '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+                hide_cursor = true,           -- スクロール中にカーソルを隠す
+                stop_eof = true,              -- ファイル末尾で止まる
+                respect_scrolloff = false,    -- scrolloffオプションを尊重するか
+                cursor_scrolls_alone = true,  -- カーソルだけがスクロールするか
+                easing_function = "quadratic" -- アニメーションの挙動 (linear, quadratic, cubic, etc)
+            })
+        end
+    }
 }

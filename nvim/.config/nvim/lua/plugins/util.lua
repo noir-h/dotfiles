@@ -36,56 +36,25 @@ return {
             { "<leader>gl",  function() Snacks.lazygit.open() end,                                              desc = "Open Lazygit" },
         },
     },
-    {
-        "epwalsh/obsidian.nvim",
-        version = "*",
-        lazy = true,
-        event = {
-            "BufReadPre " .. vim.fn.expand("~") .. "/obsidian/**/*.md",
-            "BufNewFile " .. vim.fn.expand("~") .. "/obsidian/**/*.md",
-        },
-        ft = "markdown",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            {
-                "nvim-telescope/telescope.nvim",
-                config = function()
-                    require("telescope").setup()
-                end,
-            },
-        },
-        opts = {
-            workspaces = {
-                {
-                    name = "develop",
-                    path = "~/ghq/github.com/noir-h/obsidian/develop", -- 絶対パス必須
-                },
-                {
-                    name = "freee",
-                    path = "~/ghq/github.com/noir-h/obsidian/freee", -- 絶対パス必須
-                },
-            },
-            daily_notes = {
-                folder = "daily",
-                date_format = "%Y-%m-%d",
-                alias_format = "%B %-d, %Y",
-                template = nil,
-            },
-            -- Toggle check-boxes.
-            ["<leader>ch"] = {
-                action = function()
-                    return require("obsidian").util.toggle_checkbox()
-                end,
-                opts = { buffer = true },
-            },
-            -- Smart action depending on context, either follow link or toggle checkbox.
-            ["<cr>"] = {
-                action = function()
-                    return require("obsidian").util.smart_action()
-                end,
-                opts = { buffer = true, expr = true },
-            }
-        },
-    },
 
+    {
+        "renerocksai/telekasten.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "renerocksai/calendar-vim",
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            { "<leader>zn", function() require("telekasten").new_note() end,     desc = "New note" },
+            { "<leader>zf", function() require("telekasten").find_notes() end,   desc = "Find notes" },
+            { "<leader>zg", function() require("telekasten").search_notes() end, desc = "Grep notes" },
+            { "<leader>zd", function() require("telekasten").goto_today() end,   desc = "Today note" },
+            { "<leader>zz", function() require("telekasten").follow_link() end,  desc = "Follow link" },
+        },
+        config = function()
+            require("telekasten").setup({
+                home = vim.fn.expand("/Users/igarashisora/ghq/github.com/noir-h/zettelkasten"),
+            })
+        end,
+    },
 }

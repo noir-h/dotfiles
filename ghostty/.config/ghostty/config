@@ -1,0 +1,54 @@
+font-size = 16
+# adjust-cell-height = 10%
+font-family = "JetBrainsMonoNL Nerd Font Mono"
+# font-family = "HackGen Console NF"
+
+# テーマ
+theme = Kanagawa Wave
+
+background-opacity = 0.80
+
+# ウィンドウ内の余白を入れて圧迫感を減らす
+window-padding-x = 5
+window-padding-y = 5
+window-padding-balance = true
+
+# --- Macネイティブな挙動 ---
+# タイトルバーを透明にしてスッキリさせる
+macos-titlebar-style = transparent
+# フルスクリーン時にMac標準の挙動にする
+macos-window-shadow = true
+# 入力中はマウスカーソルを隠す
+mouse-hide-while-typing = true
+# tabをいい感じにする
+macos-titlebar-style = tabs
+
+# --- 操作性 ---
+# 選択しただけでクリップボードにコピー
+copy-on-select = true
+# クリップボードの読み書きを許可
+clipboard-read = allow
+clipboard-write = allow
+
+# --- キーバインド設定（画面分割） ---
+keybind = cmd+enter=new_split:down
+keybind = cmd+shift+enter=new_split:right
+# Cmd + 矢印キー で分割した画面を「移動」
+keybind = cmd+h=goto_split:left
+keybind = cmd+l=goto_split:right
+keybind = cmd+k=goto_split:top
+keybind = cmd+j=goto_split:bottom
+# Cmd + Shift + 矢印キー でサイズを「調整」
+keybind = cmd+shift+left=resize_split:left,20
+keybind = cmd+shift+right=resize_split:right,20
+keybind = cmd+shift+up=resize_split:up,20
+keybind = cmd+shift+down=resize_split:down,20
+
+keybind = ctrl+tab=next_tab
+# keybind = cmd+shift+l=next_tab
+
+# Cmd + W で現在の「ペイン（分割）」を閉じる
+keybind = cmd+w=close_surface
+
+split-divider-color = #666666
+

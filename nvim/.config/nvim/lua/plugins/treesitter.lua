@@ -5,7 +5,7 @@ return {
         branch = "main",
         config = function()
             require 'nvim-treesitter'.setup({})
-            require 'nvim-treesitter'.install { 'rust', 'go' }
+            require 'nvim-treesitter'.install { 'rust', 'go', 'markdown', 'markdown_inline', 'html', 'latex', 'yaml', 'c', 'cpp' }
             vim.api.nvim_create_autocmd("FileType", {
                 group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
                 callback = function(ctx)

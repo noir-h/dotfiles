@@ -12,6 +12,7 @@ vim.lsp.enable({
     "lua_ls",
     -- 他の言語サーバーの設定
     "gopls",
+    "clangd",
 })
 
 local M = {}

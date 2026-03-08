@@ -68,6 +68,7 @@ return {
         },
         opts = {
             defaults = {
+                -- find_files, rg共通
                 file_ignore_patterns = {
                     "%.git/",
                     "node_modules/",
@@ -82,30 +83,27 @@ return {
                     "--column",
                     "--smart-case",
                     "--hidden",
-                    "--glob=!**/.git/*",
-                    "--glob=!**/node_modules/*",
                 },
             },
             pickers = {
                 find_files = {
                     hidden = true,
-                    find_command = {
-                        "rg",
-                        "--files",
-                        "--hidden",
-                        "--glob=!**/.git/*",
-                        "--glob=!**/node_modules/*",
-                    },
+                    -- find_command = {
+                    --     "rg",
+                    --     "--files",
+                    --     -- "--glob=!**/.git/*",
+                    --     -- "--glob=!**/node_modules/*",
+                    -- },
                 },
-                live_grep = {
-                    additional_args = function()
-                        return {
-                            "--hidden",
-                            "--glob=!**/.git/*",
-                            "--glob=!**/node_modules/*",
-                        }
-                    end,
-                },
+                -- live_grep = {
+                --     additional_args = function()
+                --         return {
+                --             "--hidden",
+                --             "--glob=!**/.git/*",
+                --             "--glob=!**/node_modules/*",
+                --         }
+                --     end,
+                -- },
             },
         },
         config = function(_, opts)

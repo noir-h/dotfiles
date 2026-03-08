@@ -14,7 +14,7 @@ return {
             {
                 "neovim/nvim-lspconfig",
                 config = function()
-                    require("config.lsp_keymaps").setup()
+                    require("config.lsp").setup()
                 end
             },
         },
